@@ -10,10 +10,8 @@ function [HMMDict] = myTrain(trainDataDir)
 
 
 HMMDict = struct();
-
-trainDataDir
-
-% DD = dir( [ trainDataDir, filesep, '*', language] );
+DD = dir(trainDataDir);
+DD
 % disp([ dataDir, filesep, '.*', language] );
 
 % for iFile=1:length(DD)

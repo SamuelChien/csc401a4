@@ -1,2 +1,3 @@
 function myTrain
-fprintf('Hello, World!\n')
+trainDataDir = '../speechdata/Training';
+myTrain(trainDataDir);

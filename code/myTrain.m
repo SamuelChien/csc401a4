@@ -1,75 +1,87 @@
-function [HMMDict] = myTrain(trainDataDir) 
-% function [HMMDict] = myTrain(trainDataDir) 
+
+% myTrain
 %
-%    inputs:
-%          trainDataDir	: training directory
+%  Purpose: Train HMM using Bayes Net Toolbox. 
+%		Task 1: Collect data
+%		Task 2: Initialize HMM by Phonemes
+%		Task 3: Train HMM by input data
+%		Task 4: Save the model after training
 %
-%     outputs:
-%          HMMDict      : Phenome to HMM Dict
+%  (c) Samuel Chien 2016
 
 
+%Initialize variables
+modelOutputName = 'PhnToHMMDict.mat';
+mfccDimensionSize = 14;
+dataDir = 'devSpeechData/Training'
+% dataDir = '/u/cs401/speechdata/Training';
 
-HMMDict = struct();
-DD = dir(trainDataDir);
-DD
-% disp([ dataDir, filesep, '.*', language] );
 
-% for iFile=1:length(DD)
-%     lines = textread([dataDir, filesep, DD(iFile).name], '%s','delimiter','\n');
+%Task 1: Collect data
+speakerList = dir(dataDir);
+phnData = {};
 
-%     for l=1:length(lines)
-%         processedLine =  preprocess(lines{l}, language);
-%         words = strsplit(' ', processedLine);
+%loop through all the speakers data
+for index_i=1:length(speakerList)
 
-%         %loop through words and construct uni
-%         for idx = 1:numel(words)
-%             currentField = char(words(idx));
+	currentSpeakerName = speakerList(index_i).name;
 
-%             %check currentField is valid
-%             if strcmp(currentField, ' ') | isempty(currentField) 
-%                 continue;
-%             %Case True: then add 1
-%             elseif isfield(LM.uni, currentField) == 1
-%                 LM.uni = setfield(LM.uni, currentField, getfield(LM.uni, currentField) + 1);
-%             %Case False: then create a new field
-%             else
-%                 LM.uni = setfield(LM.uni, currentField, 1);
-%             end
-%         end
-        
-%         prevFieldKey = char(words(1));
+	%Skip '.', '..', '.DS_store'
+	if substring(currentSpeakerName, 1, 1) == '.'
+		continue
+	end
 
-%         %loop through words and construct dictionary with words
-%         for idx = 2:numel(words)
-%             currentField = char(words(idx));
+	speakerDirPath = [dataDir, filesep, currentSpeakerName, filesep];
+    phnList = dir([speakerDirPath, '*phn']);
 
-%             %check currentField and preFieldKey is valid
-%             if strcmp(currentField, ' ') | strcmp(prevFieldKey, ' ') | isempty(currentField) | isempty(prevFieldKey)
-%                 continue;
+    for index_j=1:length(phnList)
 
-%             %Case True: then check currentField
-%             elseif isfield(LM.bi, prevFieldKey) == 1
-%                 prevFieldStruct = getfield(LM.bi, prevFieldKey);
+    	currentUtterenceName = phnList(index_j).name(1:end-4)
+       
+        %open phn file
+        [Starts, Ends, Phns] = textread([speakerDirPath,  currentUtterenceName, '.phn'], '%d %d %s', 'delimiter','\n');
 
-%                 %Case True: then add 1
-%                 if isfield(prevFieldStruct, currentField) == 1
-%                     prevFieldStruct = setfield(prevFieldStruct, currentField, getfield(prevFieldStruct, currentField) + 1);
-%                 %Case False: then create a new field
-%                 else
-%                     prevFieldStruct = setfield(prevFieldStruct, currentField, 1);
-%                 end
-%                 %Update LM bi
-%                 LM.bi = setfield(LM.bi, prevFieldKey, prevFieldStruct);
+        %open mfcc file
+        mfccData = load([speakerDirPath,  currentUtterenceName, '.mfcc']);
+        mfccData = mfccData';
+        mfccData = mfccData(1:mfccDimensionSize, :);
 
-%             %Case False: then create a new field
-%             else
-%                 LM.bi = setfield(LM.bi, prevFieldKey, struct());
-%             end
-%             prevFieldKey = currentField;
-%         end
-%     end
-% end
 
-% save( fn_LM, 'LM', '-mat'); 
+        for p = 1:length(Phns)
 
-return
+            mfccStartLineIndex = Starts(p)/128 + 1;
+            mfccEndLineIndex = min(Ends(p)/128 + 1, length(mfccData));
+            phnKey = char(Phns(p));
+            if strcmp(phnKey, 'h#')
+                phnKey = 'sil';
+            end
+
+            if ~isfield(phnData, phnKey)
+                phnData.(phnKey) = {};
+            end
+
+            %load all phn data into phnDataArray
+            phnData.(phnKey){length(phnData.(phnKey))+1} = mfccData(:, mfccStartLineIndex:mfccEndLineIndex);
+
+        end
+
+
+    end
+
+end
+
+%Task 2: Initialize HMM by Phonemes & Task 3: Train HMM by input data 
+PhnToHMMDict = struct();
+phnDataKeys = fieldnames(phnData);
+
+for keyIndex = 1:length(phnDataKeys)
+
+    phnDataKey = phnDataKeys{keyIndex};
+    PhnToHMMDict.(phnDataKey) = initHMM(phnData.(phnDataKey));
+    disp(['Training HMM for Key: ', phnDataKey])
+    [PhnToHMMDict.(phnDataKey), LL] = trainHMM(PhnToHMMDict.(phnDataKey), phnData.(phnDataKey));
+    disp([num2str(100*keyIndex/length(phnDataKeys)),'% complete'])
+end
+
+%Task 4
+save( modelOutputName, 'PhnToHMMDict', '-mat');

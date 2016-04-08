@@ -18,7 +18,7 @@ totalWordCount = 0;
 [Starts, Ends, hypSentences] = textread(hypothesis, '%d %d %s', 'delimiter', '\n');
 
 
-for sentenceIndex = 1:length(Sentences)
+for sentenceIndex = 1:length(hypSentences)
 	[SA, EA, refSentence] = textread([annotation_dir, filesep, 'unkn_', int2str(sentenceIndex), '.txt'], '%d %d %s', 'delimiter', '\n');
 
 	refSentence = char(refSentence(1));

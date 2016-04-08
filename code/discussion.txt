@@ -3,36 +3,52 @@ PART 2: Speech Identification
 PART 3: Speech Recognition
 
 	Part 3.1: Training and decoding Hidden Markov models
+		Result:
+			In this section, we have written myRun and myTrain which trains the HMM models per phonemes, then myRun evaluate the result. The result shows that the correction rate of predicting phenomes is about 45% across all speakers. This could due to the fact that there is only 8 utterence per user. 
+
+		Parameters:
+			A: the number of mixtures per state 	(8)
+			B: the number of states per sequence 	(3)
+			C: the amount of training data used 	(30)
+			D: dimension size for mfcc data 		(14)
+
+		Parameters that are doing very well: 
+			An interesting result is that most s, t, pcl, iy, k, w, ax, f, r are usually identified correctly. Unlike other phenomes, these set of sounds are identified with extreme accuracy, and coincidently, these are phenomes that appears very commonly across all training data. In other words, if we have more data, it is likely that other phenomes' accuracy will increase too.  
+
 
 	Part 3.2: Experiment Discussion
-		2 scenario each of total 16 experiment
-
-		A: the number of mixtures per state 	(8, 4)
-		B: the number of states per sequence 	(3, 2)
-		C: the amount of training data used 	(30, 15)
-		D: dimension size for mfcc data 		(14, 7)
+		Experment Variables:
+			2 scenario each results total 16 experiment
+			A: the number of mixtures per state 	(8, 4)
+			B: the number of states per sequence 	(3, 2)
+			C: the amount of training data used 	(30, 15)
+			D: dimension size for mfcc data 		(14, 7)
 
 		Result: 
 
-		Exp1: 	A-8,B-3,C-30,D-14,Accuracy-44%
-		Exp2: 	A-8,B-3,C-30,D-07,Accuracy-44%
-		Exp3: 	A-8,B-3,C-15,D-14,Accuracy-44%
-		Exp4: 	A-8,B-3,C-15,D-07,Accuracy-44%
-		Exp5: 	A-8,B-2,C-30,D-14,Accuracy-44%
-		Exp6: 	A-8,B-2,C-30,D-07,Accuracy-44%
-		Exp7: 	A-8,B-2,C-15,D-14,Accuracy-44%
-		Exp8: 	A-8,B-2,C-15,D-07,Accuracy-44%
-		Exp9: 	A-4,B-3,C-30,D-14,Accuracy-44%
-		Exp10: 	A-4,B-3,C-30,D-07,Accuracy-44%
-		Exp11: 	A-4,B-3,C-15,D-14,Accuracy-44%
-		Exp12: 	A-4,B-3,C-15,D-07,Accuracy-44%
-		Exp13: 	A-4,B-3,C-30,D-14,Accuracy-44%
-		Exp14: 	A-4,B-3,C-30,D-07,Accuracy-44%
-		Exp15: 	A-4,B-3,C-15,D-14,Accuracy-44%
-		Exp16: 	A-4,B-3,C-15,D-07,Accuracy-44%
+			Exp1: 	A-8,B-3,C-30,D-14,Accuracy-44%
+			Exp2: 	A-8,B-3,C-30,D-07,Accuracy-27%
+			Exp3: 	A-8,B-3,C-15,D-14,Accuracy-35%
+			Exp4: 	A-8,B-3,C-15,D-07,Accuracy-21%
+			Exp5: 	A-8,B-2,C-30,D-14,Accuracy-42%
+			Exp6: 	A-8,B-2,C-30,D-07,Accuracy-27%
+			Exp7: 	A-8,B-2,C-15,D-14,Accuracy-33%
+			Exp8: 	A-8,B-2,C-15,D-07,Accuracy-23%
+			Exp9: 	A-4,B-3,C-30,D-14,Accuracy-39%
+			Exp10: 	A-4,B-3,C-30,D-07,Accuracy-25%
+			Exp11: 	A-4,B-3,C-15,D-14,Accuracy-30%
+			Exp12: 	A-4,B-3,C-15,D-07,Accuracy-23%
+			Exp13: 	A-4,B-2,C-30,D-14,Accuracy-40%
+			Exp14: 	A-4,B-2,C-30,D-07,Accuracy-24%
+			Exp15: 	A-4,B-2,C-15,D-14,Accuracy-25%
+			Exp16: 	A-4,B-2,C-15,D-07,Accuracy-19%
+
+		Procedures: 
+			
 
 	Part 3.3: Word-error rates
-
+		Q: Report on the word error rates between those transcriptions and the reference transcriptions (*.txt)
+according to the following measures for each utterance, and for the entire data set:
 
 
 

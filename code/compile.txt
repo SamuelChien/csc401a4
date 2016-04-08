@@ -20,5 +20,9 @@ Procedure To Compile From Terminal
 5: cd /h/u3/g2/00/g2samuel/csc401a4/code //go to where your script is
 6: myTrain //run script without .m 
 
+Calling Levenshtein
+Levenshtein('/u/cs401/speechdata/Testing/hypotheses.txt', '/u/cs401/speechdata/Testing')
+
+
 
 

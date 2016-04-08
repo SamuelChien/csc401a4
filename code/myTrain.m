@@ -19,7 +19,7 @@ dataDir = 'devSpeechData/Training'
 
 %Task 1: Collect data
 speakerList = dir(dataDir);
-phnData = {};
+phnData = struct();
 
 %loop through all the speakers data
 for index_i=1:length(speakerList)

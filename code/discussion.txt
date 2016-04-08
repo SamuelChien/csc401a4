@@ -1,0 +1,15 @@
+PART 2: Speech Identification
+
+PART 3: Speech Recognition
+
+	Part 3.1: Training and decoding Hidden Markov models
+
+	Part 3.2: Experiment Discussion
+
+	Part 3.3: Word-error rates
+
+PART 4: Actual Speech Recognition
+	
+	Part 4.1: Original
+
+	Part 4.2: Synthesized

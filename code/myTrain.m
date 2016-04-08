@@ -23,19 +23,19 @@ phnData = struct();
 
 %loop through all the speakers data
 for index_i=1:length(speakerList)
-	currentSpeakerName = speakerList(index_i).name;
+    currentSpeakerName = speakerList(index_i).name;
 
-	%Skip '.', '..', '.DS_store'
- 	if currentSpeakerName(1:1) == '.'
- 		continue;
- 	end
+    %Skip '.', '..', '.DS_store'
+    if currentSpeakerName(1:1) == '.'
+        continue;
+    end
 
-	speakerDirPath = [dataDir, filesep, currentSpeakerName, filesep];
+    speakerDirPath = [dataDir, filesep, currentSpeakerName, filesep];
     phnList = dir([speakerDirPath, '*phn']);
 
     for index_j=1:length(phnList)
 
-    	currentUtterenceName = phnList(index_j).name(1:end-4);
+        currentUtterenceName = phnList(index_j).name(1:end-4);
        
         %open phn file
         [Starts, Ends, Phns] = textread([speakerDirPath,  currentUtterenceName, '.phn'], '%d %d %s', 'delimiter','\n');
@@ -45,11 +45,11 @@ for index_i=1:length(speakerList)
         mfccData = mfccData';
         mfccData = mfccData(1:mfccDimensionSize, :);
 
-        for p = 1:length(Phns)
+        for index_k = 1:length(Phns)
 
-            mfccStartLineIndex = Starts(p)/128 + 1;
-            mfccEndLineIndex = min(Ends(p)/128 + 1, length(mfccData));
-            phnKey = char(Phns(p));
+            mfccStartLineIndex = Starts(index_k)/128 + 1;
+            mfccEndLineIndex = min(Ends(index_k)/128 + 1, length(mfccData));
+            phnKey = char(Phns(index_k));
             if strcmp(phnKey, 'h#')
                 phnKey = 'sil';
             end

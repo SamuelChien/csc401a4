@@ -1,0 +1,29 @@
+Last name: Tinney
+First Name: Alana
+Student ID Number: 1000554090
+CDF login id: c3tinney
+Contact email address: alana.tinney@mail.utoronto.ca
+BlueMix credentials: 
+alana.tinney@sympatico.ca
+401account
+UG/Grad?: UG
+
+By submitting this file, I declare that my electronic submission is my
+own work, and is in accordance with the University of Toronto Code of
+Behaviour on Academic Matters and the Code of Student Conduct, as well
+as the collaboration policies of this course.
+
+Last name: Chien
+First Name: Tzu Yao
+Student ID Number: 998758759
+CDF login id: g2samuel
+Contact email address: samuelchien821@gmail.com
+BlueMix credentials: 
+username: samuel.chien@mail.utoronto.ca
+,password: Sc123456
+UG/Grad?: UG
+
+By submitting this file, I declare that my electronic submission is my
+own work, and is in accordance with the University of Toronto Code of
+Behaviour on Academic Matters and the Code of Student Conduct, as well
+as the collaboration policies of this course.

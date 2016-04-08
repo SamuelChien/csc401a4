@@ -68,5 +68,42 @@ PART 3: Speech Recognition
 PART 4: Actual Speech Recognition
 	
 	Part 4.1: Original
+    
+        Results:
+            SE = 0.1654
+            IE = 0.0115
+            DE = 0.0308
+            LEV_DIST = 0.2077
+
+        unk_1 : now here is truly a Marvel 
+        unk_2 :captain features a muskrat and a tadpole 
+        unk_3 :just let me die in peace 
+        unk_4 : the sculptor looked at him bug eyed and amazed angry 
+        unk_5 : flash live in the trees as a cricket ball twig in several directions 
+        unk_6 : this is particularly true in site selection 
+        unk_7 : we would lose our export markets and deny ourselves imports we need 
+        unk_8 : continental have teaspoons of soy sauce that you add 
+        unk_9 : finally he asked do you object to petting 
+        unk_10 : try every other line first then fill in the interior 
+        unk_11 : change involves the displacement of femme 
+        unk_12 : to his puzzlement there suddenly was no Hayes 
+        unk_13 : don't ask me to carry read like that 
+        unk_14 : full moon shone brightly that night 
+        unk_15 : tug boats a capable of hauling huge loads 
+        unk_16 : did dad do academic betting 
+        unk_17 : she had your dark suit increase you wash water all year 
+        unk_18 : the thick el virus was nearly overwhelmed by Dutch elm disease 
+        unk_19 : cop number of teaspoons of soy sauce that you had 
+        unk_20 : waging sweaters are made of lambs will 
+        unk_21 : we think differently 
+        unk_22 : a toothpaste tube should be squeezed from the bottom 
+        unk_23 : ran away a black knight with a lawful wedded man 
+        unk_24 : don't ask me to carry an oily rag like that 
+        unk_25 : town asked me to carry an oily rag like that 
+        unk_26 : index words and electronic switches may be reserved in the following ways 
+        unk_27 : yeah avalanche triggered a minor earthquake 
+        unk_28 : don't ask me to carry an oily rag like that 
+        unk_29 : the thick and Forrest was nearly overwhelmed by Dutch elm disease 
+        unk_30 : when all else fails use force 
 
 	Part 4.2: Synthesized

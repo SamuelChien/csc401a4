@@ -21,7 +21,7 @@ PART 3: Speech Recognition
 			2 scenario each results total 16 experiment
 			A: the number of mixtures per state 	(8, 4)
 			B: the number of states per sequence 	(3, 2)
-			C: the amount of training data used 	(30, 15)
+			C: the amount of training data used 	(30, 14)
 			D: dimension size for mfcc data 		(14, 7)
 
 		Result: 
@@ -43,12 +43,25 @@ PART 3: Speech Recognition
 			Exp15: 	A-4,B-2,C-15,D-14,Accuracy-25%
 			Exp16: 	A-4,B-2,C-15,D-07,Accuracy-19%
 
-		Procedures: 
-			
+		Procedures:
+			Every experiment need a new PhnToHMMDict, in other words, we have to use screen to train each parameter with different parameter setting. The way we do it is simply hardcode pass in the parameter to initHMM to get the .mat file. Then muyRun uses the .mat file to evaluate the score. 
+
+		Place to hardcode Param: 
+			A: Pass in to initHMM( data, M, Q, initType ) as the M value
+			B: Pass in to initHMM( data, M, Q, initType ) as the Q value
+			C: Modify value of length of speakerList
+			D: Modify value of mfccDimensionSize at the top of the page
+
 
 	Part 3.3: Word-error rates
-		Q: Report on the word error rates between those transcriptions and the reference transcriptions (*.txt)
-according to the following measures for each utterance, and for the entire data set:
+		Parameter: 
+			Levenshtein('/u/cs401/speechdata/Testing/hypotheses.txt', '/u/cs401/speechdata/Testing')
+
+		Result: 
+			SE = 0.1115
+			IE = 0.0423
+			DE = 0.0500
+			LEV_DIST = 0.2038
 
 
 

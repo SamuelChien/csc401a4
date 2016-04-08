@@ -21,10 +21,16 @@ totalWordCount = 0;
 for sentenceIndex = 1:length(hypSentences)
 	[SA, EA, refSentence] = textread([annotation_dir, filesep, 'unkn_', int2str(sentenceIndex), '.txt'], '%d %d %s', 'delimiter', '\n');
 
-	refSentence = char(refSentence(1));
+    refSentence = char(refSentence(1));
 	hypSentenece = char(hypSentences(sentenceIndex));
-
+    %
+	refSentence = lower(refSentence);
+    refSentence(ismember(refSentence,',.:;!')) = [];
+    hypSentenece = lower(hypSentenece);
+    hypSentenece(ismember(hypSentenece,',.:;!')) = [];
+    %
 	refSentenceList = strread(refSentence,'%s','delimiter', ' ');
+    
 	hypSenteneceList = strread(hypSentenece, '%s', 'delimiter', ' ');
 
 	rowSize = length(refSentenceList) + 1;

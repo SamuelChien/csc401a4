@@ -12,8 +12,8 @@
 %Initialize variables
 modelOutputName = 'PhnToHMMDict.mat';
 mfccDimensionSize = 14;
-dataDir = 'devSpeechData';
-% dataDir = '/u/cs401/speechdata/Training';
+%dataDir = 'devSpeechData';
+dataDir = '/u/cs401/speechdata/Training';
 
 
 

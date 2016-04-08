@@ -1,0 +1,24 @@
+//start a new session
+screen -R [session-name]
+
+//list existing screen
+screen -ls
+
+//detach
+ctrl + a + d
+
+//kill a screen
+screen -X -S [name you wanna kill]
+
+
+Procedure To Compile From Terminal
+
+1: screen -R SamuelSession //start session
+2: matlab //start matlab
+3: cd /h/u3/g2/00/g2samuel/csc401a4/code/FullBNT-1.0.7	//Go to BNT folder
+4: addpath(genpathKPM(pwd))
+5: cd /h/u3/g2/00/g2samuel/csc401a4/code //go to where your script is
+6: myTrain //run script without .m 
+
+
+

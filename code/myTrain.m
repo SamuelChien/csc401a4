@@ -9,12 +9,12 @@
 %
 %  (c) Samuel Chien 2016
 
-
 %Initialize variables
 modelOutputName = 'PhnToHMMDict.mat';
 mfccDimensionSize = 14;
-dataDir = 'devSpeechData/Training'
+dataDir = 'devSpeechData';
 % dataDir = '/u/cs401/speechdata/Training';
+
 
 
 %Task 1: Collect data
@@ -23,20 +23,19 @@ phnData = struct();
 
 %loop through all the speakers data
 for index_i=1:length(speakerList)
-
 	currentSpeakerName = speakerList(index_i).name;
 
 	%Skip '.', '..', '.DS_store'
-	if substring(currentSpeakerName, 1, 1) == '.'
-		continue
-	end
+ 	if currentSpeakerName(1:1) == '.'
+ 		continue;
+ 	end
 
 	speakerDirPath = [dataDir, filesep, currentSpeakerName, filesep];
     phnList = dir([speakerDirPath, '*phn']);
 
     for index_j=1:length(phnList)
 
-    	currentUtterenceName = phnList(index_j).name(1:end-4)
+    	currentUtterenceName = phnList(index_j).name(1:end-4);
        
         %open phn file
         [Starts, Ends, Phns] = textread([speakerDirPath,  currentUtterenceName, '.phn'], '%d %d %s', 'delimiter','\n');
@@ -45,7 +44,6 @@ for index_i=1:length(speakerList)
         mfccData = load([speakerDirPath,  currentUtterenceName, '.mfcc']);
         mfccData = mfccData';
         mfccData = mfccData(1:mfccDimensionSize, :);
-
 
         for p = 1:length(Phns)
 
